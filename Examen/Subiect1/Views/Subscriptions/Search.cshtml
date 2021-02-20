@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Subscriptions";
+}
+
+<h1>@ViewBag.Title</h1>
+
+@using (Html.BeginForm("Search", "Subscriptions", FormMethod.Get))
+{
+    <input class="form-control text-box single-line search-bar" name="token" type="text" value="@ViewBag.Search" placeholder="data(dd.mm.yyyy) sau descrierea">
+}
+<br />
+
+@using (Html.BeginForm("Search", "Subscriptions", FormMethod.Get))
+{
+    var selectList = new List<SelectListItem>();
+    selectList.Add(new SelectListItem { Value = "dateDesc", Text = "Noutate (cele mai noi)" });
+    selectList.Add(new SelectListItem { Value = "dateAsc", Text = "Noutate (cele mai vechi)" });
+
+    <input name="token" type="hidden" value="@ViewBag.Search">
+
+    <div class="form-group">
+        <div class="col-sm-3">
+            @Html.DropDownList("sort", new SelectList(selectList, "Value", "Text"), null, new { @class = "form-control" })
+        </div>
+        <button type="submit" class="btn btn-default">Sorteaza</button>
+    </div>
+}
+
+@foreach (BiganAntonioM41.Models.Subscription subscription in ViewBag.Subscriptions)
+{
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">@subscription.Client.Nume</h3>
+    </div>
+
+    <div class="panel-body">
+        Descriere: @subscription.Descriere
+        <span class="label label-info pull-right">@subscription.DataEmitere.ToString("dd/MM/yyyy")</span>
+
+    </div>
+
+    <div class="panel-footer">
+        <a class="btn btn-success btn-sm" href="/Subscriptions/Show/@subscription.Id">Afisare abonament</a>
+    </div>
+</div>
+}
+
+

@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>News</h1>
+
+<h2>@ViewBag.Message</h2>
+
+<a class="btn btn-primary" href="/Articles/New">Articol nou</a>
+<a class="btn btn-info pull-right" href="/Categories/Index/">Afisare categorii</a>
+
+<br />
+<br />
+
+@foreach (DAW_Lab_4.Models.Article article in ViewBag.Articles)
+{
+    <div class="panel panel-default">
+        @Html.Partial("ArticleInfo", article)
+
+        <div class="panel-footer">
+            <a class="btn btn-success btn-sm" href="/Articles/Show/@article.Id">Afisare articol</a>
+        </div>
+    </div>
+}

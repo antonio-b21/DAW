@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="jumbotron">
+            <h1 class="font-roboto">@ViewBag.firstArticle.Title</h1>
+            <p class="font-montserrat truncate">@ViewBag.firstArticle.Content</p>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    @foreach (var article in ViewBag.articles)
+    {
+    <div class="col-md-6 row-style">
+        <div class="jumbotron">
+            <h1 class="font-roboto">@article.Title</h1>
+            <p class="font-montserrat truncate">@article.Content</p>
+
+            @Html.ActionLink("Register", "Register", "Account", null, new { @class = "btn btn-sm btn-success" })
+            @Html.ActionLink("Log in", "Login", "Account", null, new { @class = "btn btn-sm btn-success" })
+        </div>
+    </div>
+    }
+</div>

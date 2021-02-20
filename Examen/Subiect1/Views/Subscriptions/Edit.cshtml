@@ -1,0 +1,36 @@
+﻿@model BiganAntonioM41.Models.Subscription
+
+<h1>Editare articol</h1>
+
+<p class="text-danger">@ViewBag.Message</p>
+
+@using (Html.BeginForm("Edit", "Subscriptions", Model.Id))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+
+    @Html.ValidationSummary(false, null, new { @class = "text-danger" })
+
+    @Html.Hidden("Id")
+
+    @Html.Label("Descriere", "Descriere abonament")
+    @Html.Editor("Descriere", new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessage("Descriere", null, new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Numar", "Numar abonament")
+    @Html.Editor("Numar", new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessage("Numar", null, new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("DataEmitere", "Data emitere abonament")
+    @Html.TextBox("DataEmitere", Model.DataEmitere.ToString(), new { @class = "form-control datepicker", @placeholder = "Introduceti data" })
+    @Html.ValidationMessage("DataEmitere", null, new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("ClientId", "Selectati categoria")
+    @Html.DropDownList("ClientId", new SelectList(Model.Cls, "Value", "Text"), null, new { @class = "form-control" })
+    @Html.ValidationMessage("ClientId", null, new { @class = "text-danger" })
+    <br />
+
+    <button class="btn btn-success" type="submit">Editare abonament</button>
+}

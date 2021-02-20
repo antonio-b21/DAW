@@ -1,0 +1,19 @@
+﻿@model BiganAntonioM41.Models.Subscription
+
+<br />
+<a class="btn btn-primary" href="/Subscriptions/Index">Inapoi la abonamente</a>
+<br />
+<br />
+
+<div class="panel panel-default">
+    @Html.Partial("SubscriptionInfo", Model)
+
+    <div class="panel-footer">
+        <a class="btn btn-warning" href="/Subscriptions/Edit/@Model.Id">Modifica abonament</a>
+        @using (Html.BeginForm("Delete", "Subscriptions", new { id = Model.Id }, FormMethod.Post, new { @class = "pull-right" }))
+        {
+            @Html.HttpMethodOverride(HttpVerbs.Delete)
+            <button class="btn btn-danger" type="submit">Sterge abonament</button>
+        }
+    </div>
+</div>

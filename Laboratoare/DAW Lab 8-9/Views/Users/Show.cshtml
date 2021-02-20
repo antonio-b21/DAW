@@ -1,0 +1,22 @@
+﻿@model DAW_Lab_8.Models.ApplicationUser
+
+<div class="panel-heading">Nume utilizator: @Model.UserName</div>
+
+<div class="panel-body">
+    <i class="glyphicon glyphicon-envelope"></i> Email utilizator: <span class="label label-default">@Model.Email</span>
+    <br /><br />
+
+    @if (Model.PhoneNumber != null)
+    {
+        <i class="glyphicon glyphicon-phone"></i>@:Telefon utilizator:<span class="label label-default">@Model.PhoneNumber</span>
+    }
+</div>
+
+<div class="panel-footer">
+    <a class="btn btn-sm btn-warning" href="/Users/Edit/@Model.Id"> Editare utilizator</a>
+    @using (Html.BeginForm("Delete", "Users", new { id = Model.Id }, FormMethod.Post, new { @class = "pull-right" }))
+    {
+        @Html.HttpMethodOverride(HttpVerbs.Delete)
+        <button class="btn btn-danger" type="submit">Sterge utilizator</button>
+    }
+</div>

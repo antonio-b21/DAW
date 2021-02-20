@@ -1,0 +1,70 @@
+﻿@model DAW_Lab_4.Models.Article
+
+<br />
+<a class="btn btn-primary" href="/Articles/Index">Inapoi la articole</a>
+<a class="btn btn-info pull-right" href="/Articles/New">Adauga articol</a>
+<br />
+<br />
+
+<div class="panel panel-default">
+    @Html.Partial("ArticleInfo", Model)
+
+    <div class="panel-footer">
+        <a class="btn btn-warning" href="/Articles/Edit/@Model.Id">Modifica articol</a>
+        @using (Html.BeginForm("Delete", "Articles", new { id = Model.Id }, FormMethod.Post, new { @class = "pull-right"}))
+        {
+            @Html.HttpMethodOverride(HttpVerbs.Delete)
+            <button class="btn btn-danger" type="submit">Sterge articol</button>
+        }
+    </div>
+</div>
+
+
+<br />
+@foreach (var comment in Model.Comments)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div>
+                    <p>@comment.Content</p> <small class="pull-right">@comment.Date</small>
+                </div>
+
+                <div style="display: inline-block; float : left; margin-right: 15px">
+                    <a class="glyphicon glyphicon-pencil" href="/Comments/Edit/@comment.CommentId"></a>
+                </div>
+
+                <div style="display: inline-block; float : left">
+                    <form method="post" action="/Comments/Delete/@comment.CommentId">
+                        @Html.HttpMethodOverride(HttpVerbs.Delete)
+                        <button class="glyphicon glyphicon-trash" style="border: none; background: transparent" type="submit"></button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+    <hr />
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="panel">
+                <form method="post" action="/Comments/New">
+                    <div class="panel-body">
+                        <input type="hidden" name="ArticleId" value="@Model.Id" />
+                        <label>Continut comentariu</label>
+                        <br />
+                        <textarea class="form-control" name="Content"></textarea>
+                        <br />
+                        <button class="btn btn-success " type="submit">Adauga comentariu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>

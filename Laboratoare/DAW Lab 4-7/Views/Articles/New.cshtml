@@ -1,0 +1,25 @@
+﻿@model DAW_Lab_4.Models.Article
+
+<h1>Adaugare articol</h1>
+
+@using (Html.BeginForm("New", "Articles"))
+{
+    @Html.ValidationSummary(false, null, new { @class = "text-danger"})
+
+    @Html.Label("Title", "Titlu articol")
+    @Html.TextBox("Title", null, new { @class = "form-control" })
+    @Html.ValidationMessage("Title", null, new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Content", "Continut articol")
+    @Html.TextArea("Content", null, new { @class = "form-control" })
+    @Html.ValidationMessage("Content", null, new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("CategoryId", "Selectati categoria")
+    @Html.DropDownList("CategoryId", new SelectList(Model.Categ, "Value", "Text"), "Selectati categoria", new { @class = "form-control" })
+    @Html.ValidationMessage("CategoryId", null, new { @class = "text-danger" })
+    <br />
+
+    <button class="btn btn-success" type="submit">Adauga articol</button>
+}

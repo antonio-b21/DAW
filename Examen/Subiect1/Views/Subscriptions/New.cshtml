@@ -1,0 +1,32 @@
+﻿@model BiganAntonioM41.Models.Subscription
+
+<h1>Adaugare abonament</h1>
+
+<p class="text-danger">@ViewBag.Message</p>
+
+@using (Html.BeginForm("New", "Subscriptions"))
+{
+    @Html.ValidationSummary(false, null, new { @class = "text-danger" })
+
+    @Html.Label("Descriere", "Descriere abonament")
+    @Html.TextBox("Descriere", null, new { @class = "form-control" })
+    @Html.ValidationMessage("Descriere", null, new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Numar", "Numar abonament")
+    @Html.TextBox("Numar", null, new { @class = "form-control" })
+    @Html.ValidationMessage("Numar", null, new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("DataEmitere", "Data emitere abonament")
+    @Html.TextBox("DataEmitere", "", new { @class = "form-control datepicker", @placeholder = "Introduceti data" })
+    @Html.ValidationMessage("DataEmitere", null, new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("ClientId", "Selectati clientul")
+    @Html.DropDownList("ClientId", new SelectList(Model.Cls, "Value", "Text"), "Selectati clientul", new { @class = "form-control" })
+    @Html.ValidationMessage("ClientId", null, new { @class = "text-danger" })
+    <br />
+
+    <button class="btn btn-success" type="submit">Adauga abonament</button>
+}

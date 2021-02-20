@@ -1,0 +1,23 @@
+﻿@model DAW_Lab_4.Models.Category
+
+
+<br />
+<br />
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">@Model.Name</h3>
+    </div>
+
+    <div class="panel-body">
+        <p>@Model.CategoryId</p>
+    </div>
+
+    <div class="panel-footer">
+        <a class="btn btn-warning" href="/Categories/Edit/@Model.CategoryId">Editare categorie</a>
+        <form class="pull-right" method="post" action="/Categories/Delete/@Model.CategoryId">
+            @Html.HttpMethodOverride(HttpVerbs.Delete)
+            <button class="btn btn-danger" type="submit">Sterge categorie</button>
+        </form>
+    </div>
+</div>

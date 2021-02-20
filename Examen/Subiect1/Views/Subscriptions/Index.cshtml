@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Subscriptions";
+}
+
+<h1>@ViewBag.Title</h1>
+
+<h2>@ViewBag.Message</h2>
+
+
+@foreach (BiganAntonioM41.Models.Subscription subscription in ViewBag.Subscriptions)
+{
+    <div class="panel panel-default">
+        @Html.Partial("SubscriptionInfo", subscription)
+
+        <div class="panel-footer">
+            <a class="btn btn-success btn-sm" href="/Subscriptions/Show/@subscription.Id">Afisare abonament</a>
+        </div>
+    </div>
+}
+
+
